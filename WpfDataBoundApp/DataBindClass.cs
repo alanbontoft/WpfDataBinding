@@ -17,6 +17,31 @@ namespace WpfDataBoundApp
         private string _textBlock2Text;
         private string _textBlock3Text;
 
+        private bool _enable;
+
+        public DataBindClass()
+        {
+            _enable = true;
+        }
+
+
+        public bool Enable
+        {
+            get
+            {
+                return _enable;
+            }
+
+            set
+            {
+                if (value != _enable)
+                {
+                    _enable = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public string Button1Text
         {
             get

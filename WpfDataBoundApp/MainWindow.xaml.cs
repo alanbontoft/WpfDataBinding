@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using WpfDataBoundApp.Classes;
+
 namespace WpfDataBoundApp
 {
     /// <summary>
@@ -24,15 +26,16 @@ namespace WpfDataBoundApp
         public string ResizeText { get; set; }
         public string ResetText { get; set; }
 
-        DataBindClass _data = new DataBindClass()
+       /* DataBindClass _data = new DataBindClass()
         {
             Button1Text = "Button 1",
             Button2Text = "Button 2",
             Button3Text = "Button 3",
             TextBlock1Text = "TB 1",
             TextBlock2Text = "TB 2",
-            TextBlock3Text = "TB 3"
-        };
+            TextBlock3Text = "TB 3",
+            Enable = true
+        };*/
 
 
         public MainWindow()
@@ -43,8 +46,25 @@ namespace WpfDataBoundApp
             ResizeText = "Two";
             ResetText = "Three";
 
+            Globals.Data = new DataBindClass()
+            {
+                Button1Text = "Button 1",
+                Button2Text = "Button 2",
+                Button3Text = "Button 3",
+                TextBlock1Text = "TB 1",
+                TextBlock2Text = "TB 2",
+                TextBlock3Text = "TB 3",
+                Enable = true
+            };
+
             // all controls will inherit this context
-            this.DataContext = _data; // this;
+            // this.DataContext = _data; // this;
+            this.DataContext = Globals.Data;
+
+            LoadImage();
+
+            lblTest.Content = "ABC";
+                
             // btnResize.DataContext = this;
             // btnReset.DataContext = this;
         }
@@ -99,13 +119,22 @@ namespace WpfDataBoundApp
 
         private void btnChange_Click(object sender, RoutedEventArgs e)
         {
-            _data.Button1Text = "Apply";
-            _data.Button2Text = "Resize";
-            _data.Button3Text = "Reset";
-            _data.TextBlock1Text = "Height";
-            _data.TextBlock2Text = "Width";
-            _data.TextBlock3Text = "Depth";
+            var data = Globals.Data;
+            data.Button1Text = "Apply";
+            data.Button2Text = "Resize";
+            data.Button3Text = "Reset";
+            data.TextBlock1Text = "Height";
+            data.TextBlock2Text = "Width";
+            data.TextBlock3Text = "Depth";
 
+            data.Enable = false;
+
+        }
+
+        private void LoadImage()
+        {
+            Uri resourceUri = new Uri("/Resources/exit.png", UriKind.Relative);
+            imgDynamic.Source = new BitmapImage(resourceUri);
         }
     }
 }
