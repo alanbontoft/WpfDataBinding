@@ -63,7 +63,7 @@ namespace WpfDataBoundApp
 
             LoadImage();
 
-            lblTest.Content = "ABC";
+            lblTest.Content = "Your text goes here";
                 
             // btnResize.DataContext = this;
             // btnReset.DataContext = this;

@@ -3,3 +3,5 @@
 ################################################################################
 
 /.vs/WpfDataBinding/v15
+/WpfDataBoundApp/bin/Debug
+/WpfDataBoundApp/obj/Debug
